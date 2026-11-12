@@ -19,7 +19,7 @@ public static class PozajmicaEndPoints
                 PozajmicaIshod.NijeNadjenaKnjiga => Results.NotFound("Ne postoji izabrana knjiga"),
                 PozajmicaIshod.NijeNadjenKorisnik => Results.NotFound("Ne postoji izabrani korisnik"),
                 PozajmicaIshod.KnjigaPozajmljena => Results.Conflict("Knjiga je vec pozajmljena"),
-                PozajmicaIshod.Kreirana => Results.Created($"/pozajmice/{korisnikZaPozajmicu.PozajmicaDto!.Id}", korisnikZaPozajmicu),
+                PozajmicaIshod.Kreirana => Results.Created($"/pozajmice/{korisnikZaPozajmicu.PozajmicaDto!.Id}", korisnikZaPozajmicu.PozajmicaDto),
 
                 _ => Results.StatusCode(500)
             };
