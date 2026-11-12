@@ -1,0 +1,6 @@
+@BibliotekaIznajmljivanje.Api_HostAddress = http://localhost:5241
+
+GET {{BibliotekaIznajmljivanje.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

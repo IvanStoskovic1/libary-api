@@ -1,0 +1,93 @@
+@ulr=http://localhost:5241
+
+### GET
+GET {{ulr}}/knjige
+
+### POST
+POST {{ulr}}/knjige
+Content-Type: application/json
+
+{
+"naslovKnjige": "Nova Knjiga",
+    "autor": "Ivan Stoskovic",
+    "zanr": "Fikcija",
+    "godinaIzdavanja": 2022,
+    "cena": 800.00
+}
+
+###PUT
+PUT {{ulr}}/knjige/2
+Content-Type: application/json
+
+{
+    "naslovKnjige": "Na Drini cuprija",
+    "autor": "Ivo Andrić",
+    "zanr": "Roman",
+    "godinaIzdavanja": 1945,
+    "cena": 2999.99
+}
+
+### DELETE
+DELETE {{ulr}}/knjige/23
+
+### GET KNJIGU
+GET {{ulr}}/knjige/23
+
+
+
+### GET KORISNICI
+GET {{ulr}}/korisnici
+
+### GET JEDAN KORISNIK
+GET {{ulr}}/korisnici/1
+
+### POST
+POST {{ulr}}/korisnici
+Content-Type: application/json
+
+{
+  "ime":"Stefan",
+  "prezime":"Nikolic",
+  "email":"stefan@.com"
+}
+
+
+###PUT IZMENI KORISNIKA
+PUT {{ulr}}/korisnici/4
+Content-Type: application/json
+
+{
+   
+  "ime":"Djordje",
+  "prezime":"Djokic"
+  
+}
+
+### DELETE
+DELETE {{ulr}}/korisnici/6
+
+
+
+###POST
+POST {{ulr}}/pozajmice
+Content-Type: application/json
+
+{
+  "korisnikId":1,
+  "knjigaId":7
+}
+
+### PUT
+PUT {{ulr}}/pozajmice/7/vracanje
+
+### GET
+GET {{ulr}}/pozajmice
+
+### GET JEDNA REZERVACIJA
+GET {{ulr}}/pozajmice/3
+
+###
+GET {{ulr}}/pozajmice/korisnik/1
+
+###
+GET {{ulr}}/pozajmice/kasni
