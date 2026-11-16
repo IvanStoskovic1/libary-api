@@ -11,6 +11,6 @@ public interface IKnjigaService
   Task<KnjigaPrikazStavkiDto> PrikaziSveKnjigeAsync(string? search, int page, int pageSize);
   Task<bool> IzmenaKnjigaPoIdAsync(int id, KnjigaRequestDto izmeniDto);
 
-  Task<bool> IzbrisiKnjiguPoIdAsync(int id);  
+  Task<BrisanjeIshod> IzbrisiKnjiguPoIdAsync(int id);  
     
 }

@@ -1,7 +1,7 @@
 @ulr=http://localhost:5241
 
 ### GET
-GET {{ulr}}/knjige
+GET {{ulr}}/knjige?page=2
 
 ### POST
 POST {{ulr}}/knjige
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE {{ulr}}/knjige/23
+DELETE {{ulr}}/knjige/22
 
 ### GET KNJIGU
 GET {{ulr}}/knjige/23
@@ -46,9 +46,9 @@ POST {{ulr}}/korisnici
 Content-Type: application/json
 
 {
-  "ime":"Stefan",
+  "ime":"Ilija",
   "prezime":"Nikolic",
-  "email":"stefan@.com"
+  "email":"ilija@.com"
 }
 
 
@@ -64,7 +64,7 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE {{ulr}}/korisnici/6
+DELETE {{ulr}}/korisnici/3
 
 
 
@@ -73,8 +73,8 @@ POST {{ulr}}/pozajmice
 Content-Type: application/json
 
 {
-  "korisnikId":1,
-  "knjigaId":7
+  "korisnikId":3,
+  "knjigaId":17
 }
 
 ### PUT
@@ -84,7 +84,7 @@ PUT {{ulr}}/pozajmice/7/vracanje
 GET {{ulr}}/pozajmice
 
 ### GET JEDNA REZERVACIJA
-GET {{ulr}}/pozajmice/3
+GET {{ulr}}/pozajmice/1
 
 ###
 GET {{ulr}}/pozajmice/korisnik/1

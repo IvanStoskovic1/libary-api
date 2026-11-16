@@ -12,7 +12,7 @@ public class KorisnikService : IKorisnikService
     {
         _db = db;
     }
-    
+
     //PRIKAZ KORISNIKA
     public async Task<List<KorisnikDto>> PrikazSvihKorisnikaAsync()
     {
@@ -84,15 +84,24 @@ public class KorisnikService : IKorisnikService
         return true;
     }
     //BRISANJE KORISNIKA PO ID
-    public async Task<bool> BrisanjeKorisnikaPoIdAsync(int id)
+    public async Task<BrisanjeIshod> BrisanjeKorisnikaPoIdAsync(int id)
     {
         var pronadjenKorisnik = await _db.Korisnici.FindAsync(id);
         if (pronadjenKorisnik == null)
         {
-            return false;
+            return BrisanjeIshod.NijeNadjena;
         }
+
+        bool pronadjenKorisnikPozajmica = await _db.Pozajmica.AnyAsync(pronadjen => pronadjen.KorisnikId == pronadjenKorisnik.Id);
+        if (pronadjenKorisnikPozajmica)
+        {
+            return BrisanjeIshod.ImaPozajmicu;
+        }
+
         _db.Korisnici.Remove(pronadjenKorisnik);
         await _db.SaveChangesAsync();
-        return true;
+        return BrisanjeIshod.Uspeh;
+
+
     }
 }

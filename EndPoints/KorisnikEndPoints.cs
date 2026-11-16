@@ -55,11 +55,14 @@ public static class KorisnikEndPoints
         group.MapDelete("/{id}", async (int id, IKorisnikService servis) =>
         {
             var pronadjenKorisnik = await servis.BrisanjeKorisnikaPoIdAsync(id);
-            if (pronadjenKorisnik == false)
+            return pronadjenKorisnik switch
             {
-                return Results.NotFound();
-            }
-            return Results.NoContent();
+                BrisanjeIshod.NijeNadjena=>Results.NotFound(),
+                BrisanjeIshod.ImaPozajmicu=>Results.Conflict("Ne moze korisnik da se obrise koji ima pozajmicu"),
+                BrisanjeIshod.Uspeh=>Results.NoContent(),
+                
+                _=>Results.StatusCode(500)
+            };
         });
 
 

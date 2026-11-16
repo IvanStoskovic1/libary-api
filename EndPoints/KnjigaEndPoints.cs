@@ -43,13 +43,23 @@ public static class KnjigaEndPoints
         group.MapDelete("/{id}", async (IKnjigaService servis, int id) =>
         {
             var pronadjenaKnjigaZaBrisanje = await servis.IzbrisiKnjiguPoIdAsync(id);
+           
+         return pronadjenaKnjigaZaBrisanje switch
+            {
+                BrisanjeIshod.NijeNadjena=>Results.NotFound(),
+                BrisanjeIshod.ImaPozajmicu=>Results.Conflict("Ne moze knjiga da se obrise jer je vec pozajmljena"),
+                BrisanjeIshod.Uspeh=>Results.NoContent(),
+            _ => Results.StatusCode(500)
+            };
+
+           /*
             if (pronadjenaKnjigaZaBrisanje != true)
             {
                 return Results.NotFound();
             }
 
             return Results.NoContent();
-
+*/
         });
 
         //PRETRAZI KNJIGU PO ID

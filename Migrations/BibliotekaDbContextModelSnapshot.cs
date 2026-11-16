@@ -110,13 +110,13 @@ namespace BibliotekaIznajmljivanje.Api.Migrations
                     b.HasOne("BibliotekaIznajmljivanje.Api.Data.Knjiga", "Knjiga")
                         .WithMany()
                         .HasForeignKey("KnjigaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BibliotekaIznajmljivanje.Api.Models.Korisnik", "Korisnik")
                         .WithMany()
                         .HasForeignKey("KorisnikId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Knjiga");

@@ -109,18 +109,25 @@ public class KnjigaService : IKnjigaService
     }
 
     //IZBRISI KNJIGU PO ID
-    public async Task<bool> IzbrisiKnjiguPoIdAsync(int id)
+    public async Task<BrisanjeIshod> IzbrisiKnjiguPoIdAsync(int id)
     {
         var pronadjenaKnjiga = await _db.Knjige.FindAsync(id);
         if (pronadjenaKnjiga == null)
         {
-            return false;
+            return BrisanjeIshod.NijeNadjena;
+        }
+
+        bool knjigaZaBrisanje = await _db.Pozajmica.AnyAsync(knjiga => knjiga.Id == pronadjenaKnjiga.Id);
+        if (knjigaZaBrisanje)
+        {
+            return BrisanjeIshod.ImaPozajmicu;
         }
         else
         {
             _db.Knjige.Remove(pronadjenaKnjiga);
             await _db.SaveChangesAsync();
-            return true;
+            return BrisanjeIshod.Uspeh;
         }
+
     }
 }

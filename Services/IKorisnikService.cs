@@ -8,6 +8,6 @@ public interface IKorisnikService
     Task<KorisnikDto?> PrikazKorisnikaPoIdAsync(int id);
     Task<KorisnikDto?> KreiranjeKorisnikaAsync(KorisnikRequestDto noviDto);
     Task<bool> IzmenaKorisnikaPoIdAsync(int id,KorisnikUpdateDto izmenjenKorisnik);
-    Task<bool> BrisanjeKorisnikaPoIdAsync(int id);
+    Task<BrisanjeIshod> BrisanjeKorisnikaPoIdAsync(int id);
 
 }
