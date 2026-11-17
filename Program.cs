@@ -4,6 +4,7 @@ using BibliotekaIznajmljivanje.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.AddBibliotekaDataBase(builder.Configuration);
 builder.Services.AddScoped<IKnjigaService, KnjigaService>();
 builder.Services.AddScoped<IKorisnikService,KorisnikService>();
@@ -14,11 +15,17 @@ builder.Services.AddOpenApi();
 
 
 
-
+builder.Services.AddProblemDetails();  
 var app = builder.Build();
+app.UseExceptionHandler(); 
+
+
 app.MapKnjige();
 app.MapKorisnik();
 app.MapPozajmica();
+
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

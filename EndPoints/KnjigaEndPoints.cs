@@ -13,7 +13,6 @@ public static class KnjigaEndPoints
         //PRIKAZ SVIH KNJIGA
         group.MapGet("", async (IKnjigaService servis, string? search, int page = 1, int pageSize = 10) =>
         {
-
             var prikazKnjiga = await servis.PrikaziSveKnjigeAsync(search, page, pageSize);
             return Results.Ok(prikazKnjiga);
         });
