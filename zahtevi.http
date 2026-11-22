@@ -16,7 +16,6 @@ Content-Type: application/json
 }
 
 
-
 ###PUT
 PUT {{ulr}}/knjige/2
 Content-Type: application/json

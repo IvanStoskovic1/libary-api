@@ -5,7 +5,7 @@ namespace BibliotekaIznajmljivanje.Api.Services;
 public interface IPozajmicaService
 {
     Task<PozajmicaIshod> VracanjeKnjigeAsync(int id);
-    Task<List<PozajmicaDto>> PrikazSvihRegistracijaAsync();
+    Task<List<PozajmicaDto>> PrikazSvihPozajmicaAsync();
     Task<PozajmicaDto?> PrikazJednePozajmicePoIdAsync(int id);
 
     Task<List<PozajmicaDto>?> PrikazSvihPozajmicaJednogKorisnikaAsync(int id);

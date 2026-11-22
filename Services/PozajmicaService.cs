@@ -20,6 +20,7 @@ public class PozajmicaService : IPozajmicaService
         {
             return PozajmicaIshod.NijeNadjena;
         }
+        
         if (pozajmica.DatumVracanja is not null)
         {
             return PozajmicaIshod.VecVracena;
@@ -30,7 +31,7 @@ public class PozajmicaService : IPozajmicaService
     }
 
     //PRIKAZ SVIH POZAJMICA
-    public async Task<List<PozajmicaDto>> PrikazSvihRegistracijaAsync()
+    public async Task<List<PozajmicaDto>> PrikazSvihPozajmicaAsync()
     {
         var listaRezervacija = await _db.Pozajmica.AsNoTracking().Include(i => i.Korisnik)
                                             .Include(i => i.Knjiga)

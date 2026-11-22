@@ -42,7 +42,7 @@ public static class PozajmicaEndPoints
         // GET PRIKAZ SVIH REGISTRACIJA
         group.MapGet("", async (IPozajmicaService servis) =>
         {
-            var listaRezervacija = await servis.PrikazSvihRegistracijaAsync();
+            var listaRezervacija = await servis.PrikazSvihPozajmicaAsync();
             return Results.Ok(listaRezervacija);
         });
 
