@@ -117,7 +117,7 @@ public class KnjigaService : IKnjigaService
             return BrisanjeIshod.NijeNadjena;
         }
 
-        bool knjigaZaBrisanje = await _db.Pozajmica.AnyAsync(knjiga => knjiga.Id == pronadjenaKnjiga.Id);
+        bool knjigaZaBrisanje = await _db.Pozajmica.AnyAsync(pozajmica => pozajmica.KnjigaId == pronadjenaKnjiga.Id);
         if (knjigaZaBrisanje)
         {
             return BrisanjeIshod.ImaPozajmicu;
