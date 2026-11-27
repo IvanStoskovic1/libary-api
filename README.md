@@ -9,6 +9,7 @@ REST API for managing a library: books, members, and book loans. Built with ASP.
 - Dependency Injection and a service layer
 - DTOs for requests and responses
 - Validation with DataAnnotations
+- xUnit tests with in-memory SQLite (service layer)
 
 ## Features
 
@@ -33,6 +34,8 @@ REST API for managing a library: books, members, and book loans. Built with ASP.
 | `Dtos` | Request/response objects |
 | `Extensions` | Service registration helpers |
 | `Migrations` | EF Core migrations |
+| `BibliotekaIznajmljivanje.Tests` | xUnit tests for the service layer |
+
 
 Endpoints only translate HTTP to service calls and results back to HTTP. All rules live in the services.
 
@@ -53,6 +56,23 @@ dotnet run
 ```
 
 The SQLite database file (`biblioteka.db`) is created automatically by the migration. Example requests are in `zahtevi.http` (works with the VS Code REST Client extension or Visual Studio).
+
+## Tests
+
+Unit tests cover all three services (`KnjigaService`, `KorisnikService`, `PozajmicaService`). They run against an in-memory SQLite database (a fresh one for every test), so they exercise real relational behavior such as foreign keys, not just a fake provider.
+
+Run them from the repository root:
+
+```bash
+dotnet test BibliotekaIznajmljivanje.Tests
+```
+
+What is covered:
+
+- every outcome of the business rules (`PozajmicaIshod`, `BrisanjeIshod`)
+- failed operations leave the database unchanged
+- search and pagination, including page size limits
+- DTO mapping and persistence checks on write operations
 
 ## API endpoints
 
